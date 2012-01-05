@@ -10,18 +10,17 @@ Call the plugin with $('jquery-selector').customSelect({  });
         selected = ':selected',
         $win = $(window),
         $el = $(el),
-        cur = $el.find(selected),
-        
+        cur = $el.find(selected);
         $el
             .after('<span class="' + $el.attr('class') + '"><span class="inner">' + cur.text() + '</span></span>')
             .css({ fontSize:$el.next().css('font-size'), opacity:0 });
         var span = $el.next()
-                      .mousemove(function(e){
-		                      $el.css({
-			                      'left': e.pageX - span.offset().left - $el.outerWidth() + 20, //position right side 20px right of cursor X)
-			                      'top': e.pageY - span.offset().top - $win.scrollTop() - 3
-		                      });	
-	                    }),
+            .mousemove(function(e){
+                $el.css({
+                  'left': e.pageX - span.offset().left - $el.outerWidth() + 20, // position right side 20px right of cursor X)
+                  'top': e.pageY - span.offset().top - $win.scrollTop() - 3
+                });	
+            }),
 	      inner = span.find(':first-child');
         $el.change(function(){
             inner.text($(this).find(selected).text()).parent();
@@ -39,6 +38,6 @@ Call the plugin with $('jquery-selector').customSelect({  });
         });
     };
     // default settings
-    $.fn.customSelect.defaults = {  };
+    $.fn.customSelect.defaults = { /* nothing yet */ };
 })(jQuery);
 
