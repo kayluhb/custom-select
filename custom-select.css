@@ -1,0 +1,3 @@
+select { width:200px; }
+.select { background:#fff; display:inline-block; font-size:12px; height:20px; line-height:20px; width:200px; }
+.select .inner { display:inline-block; cursor:pointer; overflow:hidden; text-overflow:ellipsis; }
