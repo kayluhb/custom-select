@@ -1,4 +1,8 @@
-/* Custom Select plugin */
+/* 
+
+Call the plugin with $('jquery-selector').customSelect({  });
+
+*/
 (function($) {
     var CustomSelect = function(el, opts) {
         //Defaults are below
