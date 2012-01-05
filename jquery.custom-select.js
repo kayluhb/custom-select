@@ -18,7 +18,7 @@ Call the plugin with $('jquery-selector').customSelect({  });
             .mousemove(function(e){
                 $el.css({
                   'left': e.pageX - span.offset().left - $el.outerWidth() + 20, // position right side 20px right of cursor X)
-                  'top': e.pageY - span.offset().top - $win.scrollTop() - 3
+                  'top': e.pageY - span.offset().top - 5
                 });	
             }),
 	      inner = span.find(':first-child');
