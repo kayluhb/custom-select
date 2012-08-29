@@ -1,30 +1,30 @@
-/* 
-
-Call the plugin with $('jquery-selector').customSelect({  });
-
+/*
+Call the plugin with $('jquery-selector').customSelect();
 */
 (function($) {
     var CustomSelect = function(el, opts) {
         //Defaults are below
         var settings = $.extend({}, $.fn.customSelect.defaults, opts),
-        selected = ':selected',
-        $win = $(window),
-        $el = $(el),
-        cur = $el.find(selected);
+            selected = ':selected',
+            $el = $(el),
+            $wrap = $('<div/>'),
+            cur = $el.find(selected),
+            cls = $el.attr('class');
+
+        $wrap
+            .addClass(cls + '-wrap')
+            .html('<span class="' + cls + '"><span class="inner">' + cur.text() + '</span></span>');
+
+        var $inner = $wrap.find('.inner');
+
         $el
-            .after('<span class="' + $el.attr('class') + '"><span class="inner">' + cur.text() + '</span></span>')
-            .css({ fontSize:$el.next().css('font-size'), opacity:0 });
-        var span = $el.next()
-            .mousemove(function(e){
-                $el.css({
-                  'left': e.pageX - span.offset().left - $el.outerWidth() + 20, // position right side 20px right of cursor X)
-                  'top': e.pageY - span.offset().top - 5
-                });	
-            }),
-	      inner = span.find(':first-child');
-        $el.change(function(){
-            inner.text($(this).find(selected).text()).parent();
-        });
+            .after($wrap)
+            .css({ fontSize:$el.next().css('font-size'), opacity:0 })
+            .change(function(){
+                $inner.text($(this).find(selected).text());
+            });
+
+        $wrap.append($el);
     };
     $.fn.customSelect = function(options) {
         return this.each(function(idx, el) {
@@ -40,4 +40,3 @@ Call the plugin with $('jquery-selector').customSelect({  });
     // default settings
     $.fn.customSelect.defaults = { /* nothing yet */ };
 })(jQuery);
-
