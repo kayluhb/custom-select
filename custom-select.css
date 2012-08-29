@@ -1,3 +1,41 @@
-select { position:absolute; width:200px; }
-.select { background:#fff; cursor:pointer; display:inline-block; font-size:12px; height:20px; line-height:20px; position:relative; width:200px; }
-.select .inner { cursor:pointer; display:inline-block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+/*
+  $height:28px;
+  $width:220px;
+*/
+
+/* wraps the select */
+.custom-select-wrap {
+  margin-bottom:10px;
+}
+/* the selector class for the select (can be anything. just change 'custom-select' below) */
+select.custom-select {
+  height:28px;
+  left:0;
+  position:absolute;
+  top:0;
+  width:220px;
+  z-index:10;
+}
+/* the custom select itself */
+span.custom-select {
+  background:#e2e2e2;
+  cursor:pointer;
+  display:inline-block;
+  font-weight:700;
+  height:28px;
+  line-height:28px;
+  overflow:hidden
+  width:220px;
+  z-index:9;
+}
+/* make the inner span look clickable and add an ellipsis if the text is too long. */
+span.custom-select .inner {
+  cursor:pointer;
+  display:inline-block;
+  height:100%;
+  padding-left:12px;
+  position:relative;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  width:100%;
+}
