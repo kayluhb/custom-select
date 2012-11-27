@@ -24,7 +24,7 @@ span.custom-select {
   font-weight:700;
   height:28px;
   line-height:28px;
-  overflow:hidden
+  overflow:hidden;
   width:220px;
   z-index:9;
 }
