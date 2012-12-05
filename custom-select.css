@@ -1,4 +1,23 @@
+/* Three sizes below */
+
+.custom-select-wrap,
+select.custom-select,
+span.custom-select {
+  height: 28px;
+  min-width: 136px;
+}
+.custom-select-wrap.small,
+select.custom-select.small,
+span.custom-select.small {
+  min-width: 50px;
+}
+.custom-select-wrap.wide,
+select.custom-select.wide,
+span.custom-select.wide {
+  min-width: 166px;
+}
 .custom-select-wrap {
+  display: inline-block;
   position: relative;
 }
 .custom-select-wrap.focus span.custom-select {
@@ -9,18 +28,10 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 select.custom-select {
-  height: 28px;
   left: 0;
   position: absolute;
   top: 0;
-  width: 136px;
   z-index: 10;
-}
-select.custom-select.small {
-  width: 50px;
-}
-select.custom-select.wide {
-  width: 240px;
 }
 span.custom-select {
   background: #f6f5f2;
@@ -29,21 +40,18 @@ span.custom-select {
   cursor: pointer;
   display: inline-block;
   font-size: 12px;
-  height: 28px;
   left: 0;
   line-height: 28px;
   overflow: hidden;
-  padding-right: 22px;
+  padding-right: 28px;
   position: absolute;
   top: 0;
-  width: 136px;
   z-index: 9;
-}
-span.custom-select.small {
-  width: 50px;
-}
-span.custom-select.wide {
-  width: 240px;
+  -webkit-transition: border 0.15s ease-in;
+  -moz-transition: border 0.15s ease-in;
+  -ms-transition: border 0.15s ease-in;
+  -o-transition: border 0.15s ease-in;
+  transition: border 0.15s ease-in;
 }
 span.custom-select:focus {
   border: 1px solid #5c96aa;
@@ -53,7 +61,6 @@ span.custom-select:focus {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 span.custom-select i {
-  
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid #000;
@@ -63,7 +70,6 @@ span.custom-select i {
   right: 9px;
   top: 9px;
   width: 0;
-
 }
 .custom-select-inner {
   cursor: pointer;
