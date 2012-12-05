@@ -1,9 +1,6 @@
 /*
 Call the plugin with
-
     $('jquery-selector').customSelect();
-
-The first class is what the plugin uses to style the select. If the element does not have any class, it will default to 'custom-select'.
 
 */
 (function($) {
@@ -27,8 +24,8 @@ The first class is what the plugin uses to style the select. If the element does
         $el.addClass(cls);
         
         $wrap
-            .addClass(firstCls + '-wrap')
-            .html('<span class="' + cls + '" id="cs_' + id + '" aria-controls="' + id + '"><span class="' + innerCls + '">' + cur.text() + '</span><i></i></span>');
+            .addClass(firstCls + '-wrap ' + cls.split(firstCls).join(''))
+            .html('<span class="' + cls + '" id="cs_' + id + '" aria-controls="' + id + '"><span class="' + innerCls + '"></span><i></i></span>');
 
         var $inner = $wrap.find('.' + innerCls);
 
@@ -36,7 +33,7 @@ The first class is what the plugin uses to style the select. If the element does
             .after($wrap)
             .css({ fontSize: $el.next().css('font-size'), opacity: 0 })
             .change(function () {
-                $inner.text($(this).find(selected).text());
+                setText();
             })
             .focusin(function () {
                 $wrap.addClass(f);
@@ -46,6 +43,14 @@ The first class is what the plugin uses to style the select. If the element does
             });
 
         $wrap.append($el);
+        setText();
+
+        function setText() {
+            $inner.text($el.find(selected).text());
+            var w = $inner.parent().outerWidth();
+            $el.width(w);
+            $wrap.width(w);
+        }
     };
 
     $.fn.customSelect = function (options) {
