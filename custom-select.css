@@ -1,41 +1,75 @@
-/*
-  $height:28px;
-  $width:220px;
-*/
-
-/* wraps the select */
 .custom-select-wrap {
-  margin-bottom:10px;
+  position: relative;
 }
-/* the selector class for the select (can be anything. just change 'custom-select' below) */
+.custom-select-wrap.focus span.custom-select {
+  border: 1px solid #5c96aa;
+  outline: none;
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
 select.custom-select {
-  height:28px;
-  left:0;
-  position:absolute;
-  top:0;
-  width:220px;
-  z-index:10;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 136px;
+  z-index: 10;
 }
-/* the custom select itself */
+select.custom-select.small {
+  width: 50px;
+}
+select.custom-select.wide {
+  width: 240px;
+}
 span.custom-select {
-  background:#e2e2e2;
-  cursor:pointer;
-  display:inline-block;
-  font-weight:700;
-  height:28px;
-  line-height:28px;
-  overflow:hidden;
-  width:220px;
-  z-index:9;
+  background: #f6f5f2;
+  border: 1px solid #e1e1e1;
+  color: #6a6a6a;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+  overflow: hidden;
+  padding-right: 22px;
+  width: 136px;
+  z-index: 9;
 }
-/* make the inner span look clickable and add an ellipsis if the text is too long. */
-span.custom-select .inner {
-  cursor:pointer;
-  display:inline-block;
-  height:100%;
-  padding-left:12px;
-  position:relative;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  width:100%;
+span.custom-select.small {
+  width: 50px;
+}
+span.custom-select.wide {
+  width: 240px;
+}
+span.custom-select:focus {
+  border: 1px solid #5c96aa;
+  outline: none;
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+span.custom-select i {
+  
+  border-left: 10px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 10px solid #000;
+  display: block;
+  height: 0;
+  position: absolute;
+  right: 9px;
+  top: 6px;
+  width: 0;
+
+}
+.custom-select-inner {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  padding-left: 10px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
