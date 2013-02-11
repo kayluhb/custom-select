@@ -1,73 +1,92 @@
 /*
 Call the plugin with
-    $('jquery-selector').customSelect();
-
+$('jquery-selector').customSelect();
 */
-(function($) {
-    var CustomSelect = function(el, opts) {
-        //Defaults are below
-        var settings = $.extend({}, $.fn.customSelect.defaults, opts),
-            selected = ':selected',
-            $el = $(el),
-            $wrap = $('<span/>'),
-            cls = $el.attr('class') === undefined ? 'custom-select' : $el.attr('class'),
-            cur = $el.find(selected),
-            firstCls = cls.split(' ')[0],
-            innerCls = firstCls + '-inner',
-            id = $el.attr('id'),
-            f = 'focus';
 
-        // Set id on input if it doesn't have one
-        if (!id || id.length < 1) {
-            id = $el.attr('id', '_custom_select_' + $.fn.customSelect.uid++).attr('id');
-        }
-        $el.addClass(cls);
+(function ($) {
+    $.customSelect = function (el, options) {
+        // To avoid scope issues, use 'base' instead of 'this'
+        // to reference this class from internal events and functions.
+        var base = this;
         
-        $wrap
-            .addClass(firstCls + '-wrap ' + cls.split(firstCls).join(''))
-            .html('<span class="' + cls + '" id="cs_' + id + '" aria-controls="' + id + '"><span class="' + innerCls + '"></span><i></i></span>');
+        var $el = $(el),
+            $inner,
+            $wrap = $('<span/>'),
+            selected = ':selected';
 
-        var $inner = $wrap.find('.' + innerCls);
+        // Access to jQuery and DOM versions of element
+        base.el = el;
+        base.$el = $el;
 
-        $el
-            .after($wrap)
-            .css({ fontSize: $el.next().css('font-size'), opacity: 0 })
-            .change(function () {
-                setText();
-            })
-            .focusin(function () {
-                $wrap.addClass(f);
-            })
-            .focusout(function () {
-                $wrap.removeClass(f);
-            });
+        // Add a reverse reference to the DOM object
+        base.$el.data('customSelect', base);
 
-        $wrap.append($el);
-        setText();
+        function init() {
+            
+            base.options = $.extend({}, $.customSelect.defaults, options);
 
-        function setText() {
+            var cls = $el.attr('class') === undefined ? 'custom-select' : $el.attr('class'),
+                cur = $el.find(selected),
+                firstCls = cls.split(' ')[0],
+                f = 'focus',
+                id = $el.attr('id'),
+                innerCls = firstCls + '-inner';
+
+            // Set id on input if it doesn't have one
+            if (!id || id.length < 1) {
+                id = $el.attr('id', '_custom_select_' + $.customSelect.uid++).attr('id');
+            }
+            $el.addClass(cls);
+        
+            $wrap
+                .addClass(firstCls + '-wrap ' + cls.split(firstCls).join(''))
+                .html('<span class="' + cls + '" id="cs_' + id + '" aria-controls="' + id + '"><span class="' + innerCls + '"></span><i></i></span>');
+
+            $inner = $wrap.find('.' + innerCls);
+
+            $el
+                .after($wrap)
+                .css({
+                    fontSize: $el.next().css('font-size'),
+                    opacity: 0
+                })
+                .change(function () {
+                    base.setText();
+                })
+                .focusin(function () {
+                    $wrap.addClass(f);
+                })
+                .focusout(function () {
+                    $wrap.removeClass(f);
+                });
+
+            $wrap.append($el);
+            base.setText();
+        };
+
+        base.setText = function () {
             $inner.text($el.find(selected).text());
             var w = $inner.parent().outerWidth();
             $el.width(w);
             $wrap.width(w);
         }
+
+        // Run initializer
+        init();
     };
 
-    $.fn.customSelect = function (options) {
-        return this.each(function(idx, el) {
-            var $el = $(this), key = 'customSelect';
-            // Return early if this element already has a plugin instance
-            if ($el.data(key)) { return; }
-            // Pass options to plugin constructor
-            var customSelect = new CustomSelect(this, options);
-            // Store plugin object in this element's data
-            $el.data(key, customSelect);
-        });
+    // Default options
+    $.customSelect.defaults = {
+        /* nothing yet */
     };
 
     // Static properties
-    $.fn.customSelect.uid = 0;
+    $.customSelect.uid = 0;
 
-    // Default settings
-    $.fn.customSelect.defaults = { /* nothing yet */ };
+    $.fn.customSelect = function (options) {
+        return this.each(function () {
+            (new $.customSelect(this, options));
+        });
+    };
+
 })(jQuery);
