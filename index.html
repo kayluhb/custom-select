@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>jQuery Custom Select by kayluhb</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/kayluhb/custom-select">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>jQuery Custom Select</h1>
+            <h2>A jquery plugin for custom selects.</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/kayluhb/custom-select/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/kayluhb/custom-select/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>Custom Select</h1>
+
+<p>A simple plugin for creating custom select drop downs.</p>
+
+<p>Call the plugin with</p>
+
+<pre><code>$('jquery-selector').customSelect();
+</code></pre>
+
+<p>The first class is what the plugin uses to style the select. If the element does not have any class, it will default to 'custom-select'.</p>
+
+<p>There are no parameters for this plugin at this time</p>
+
+<h2>Example</h2>
+
+<pre><code>&lt;select class="custom-select"&gt;
+  &lt;option&gt;Option 1&lt;/option&gt;
+  &lt;option&gt;Option 2&lt;/option&gt;
+  &lt;option&gt;Option 3&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;script&gt;
+    (function($){
+        function init(){
+            $('.custom-select').customSelect();
+        }
+        $(init);
+    }(jQuery));
+&lt;/script&gt;
+</code></pre>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/kayluhb">kayluhb</a> can be found on <a href="https://github.com/kayluhb/custom-select">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
