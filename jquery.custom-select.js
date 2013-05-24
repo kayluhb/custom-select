@@ -22,7 +22,7 @@ $('jquery-selector').customSelect();
         base.$el.data('customSelect', base);
 
         function init() {
-            
+
             base.options = $.extend({}, $.customSelect.defaults, options);
 
             var cls = $el.attr('class') === undefined ? 'custom-select' : $el.attr('class'),
@@ -37,7 +37,7 @@ $('jquery-selector').customSelect();
                 id = $el.attr('id', '_custom_select_' + $.customSelect.uid++).attr('id');
             }
             $el.addClass(cls);
-        
+
             $wrap
                 .addClass(firstCls + '-wrap ' + cls.split(firstCls).join(''))
                 .html('<span class="' + cls + '" id="cs_' + id + '" aria-controls="' + id + '"><span class="' + innerCls + '"></span><i></i></span>');
@@ -60,16 +60,29 @@ $('jquery-selector').customSelect();
                     $wrap.removeClass(f);
                 });
 
-            $wrap.append($el);
+            $wrap
+                // On mousemove, keep file input under the cursor
+                .mousemove(function(e){
+                    $el.css({
+                        // Position right side 20px right of cursor X)
+                        top: e.pageY - $wrap.offset().top - 5
+                    });
+                })
+                .mousedown(function(e){
+                    $el.css({
+                        //left: 0,
+                        top: 0
+                    });
+                })
+                .append($el);
             base.setText();
-        };
+        }
 
         base.setText = function () {
-            $inner.text($el.find(selected).text());
+            var txt = $el.find(selected).text();
+            $inner.text($.trim(txt));
             var w = $inner.parent().outerWidth();
-            $el.width(w);
-            $wrap.width(w);
-        }
+        };
 
         // Run initializer
         init();
