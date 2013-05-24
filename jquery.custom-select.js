@@ -79,9 +79,10 @@ $('jquery-selector').customSelect();
         }
 
         base.setText = function () {
-            var txt = $el.find(selected).text();
-            $inner.text($.trim(txt));
+            $inner.text($.trim($el.find(selected).text()));
             var w = $inner.parent().outerWidth();
+            $el.width(w);
+            $wrap.width(w);
         };
 
         // Run initializer
