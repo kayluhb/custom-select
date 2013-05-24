@@ -18,6 +18,7 @@ span.custom-select.wide {
 }
 .custom-select-wrap {
   display: inline-block;
+  overflow: hidden;
   position: relative;
 }
 .custom-select-wrap.focus span.custom-select {
