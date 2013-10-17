@@ -86,9 +86,9 @@ $('jquery-selector').customSelect();
             $inner.text($.trim($el.find(selected).text()));
             var w = $inner.parent().outerWidth();
             $el.width(w);
-            $wrap.width(w);
 
             $wrap
+                .width(w)
                 .off(mousemove, onMove)
                 .on(mousemove, onMove);
         };
