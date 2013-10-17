@@ -8,10 +8,11 @@ $('jquery-selector').customSelect();
         // To avoid scope issues, use 'base' instead of 'this'
         // to reference this class from internal events and functions.
         var base = this;
-        
+
         var $el = $(el),
             $inner,
             $wrap = $('<span/>'),
+            mousemove = 'mousemove',
             selected = ':selected';
 
         // Access to jQuery and DOM versions of element
@@ -62,20 +63,23 @@ $('jquery-selector').customSelect();
 
             $wrap
                 // On mousemove, keep file input under the cursor
-                .mousemove(function(e){
-                    $el.css({
-                        // Position right side 20px right of cursor X)
-                        top: e.pageY - $wrap.offset().top - 5
-                    });
-                })
-                .mousedown(function(e){
-                    $el.css({
-                        //left: 0,
-                        top: 0
-                    });
-                })
+                .on(mousemove, onMove)
+                .mousedown(onDown)
                 .append($el);
             base.setText();
+        }
+
+        function onMove(e) {
+            $el.css({
+                top: e.pageY - $wrap.offset().top - 5
+            });
+        }
+
+        function onDown(e) {
+            $wrap.off(mousemove, onMove);
+            $el.css({
+                top: 0
+            });
         }
 
         base.setText = function () {
@@ -83,6 +87,10 @@ $('jquery-selector').customSelect();
             var w = $inner.parent().outerWidth();
             $el.width(w);
             $wrap.width(w);
+
+            $wrap
+                .off(mousemove, onMove)
+                .on(mousemove, onMove);
         };
 
         // Run initializer
